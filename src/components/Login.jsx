@@ -46,7 +46,9 @@ export default function Login() {
     var name=jwtDecode(res.credential).name;
     sessionStorage.setItem('email', email);
     sessionStorage.setItem('name', name);
+    sessionStorage.setItem('jwt', res.credential);
     navigate("/home");
+    
   };
 
   const onError = () => {

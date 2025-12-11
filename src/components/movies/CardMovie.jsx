@@ -12,8 +12,12 @@ export default function CardMovie({ movie }){
 
   const addBookmark = () => {
     //Save bookmark in database with the api call
-    addNewBookmark(sessionStorage.getItem('email'), movie)
-      .then((res) => navigate('/home/bookmarks'));
+    addNewBookmark(sessionStorage.getItem('email'), sessionStorage.getItem('jwt'), movie)
+      .then((res) => {
+      console.log("bookmark added");
+      navigate('/home/bookmarks');
+      })
+      .catch((err) => alert("Error adding bookmark: "+err));
   }
 
   return(

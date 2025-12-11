@@ -1,4 +1,6 @@
-import API from './api';
+import API from './api.js';
+import axios from 'axios';
+import config from '../config.js';
 
 export {
     getAllMovies,
@@ -9,13 +11,20 @@ export {
 }
 
 function getAllMovies() {
-    return API.get('/movies').then(res => res.data);
+    return API.get('/movies').then(res => res.data).catch((error) => {
+        console.error("Error fetching movies:", error);
+        throw error;
+    }); 
 }
 
-function addNewBookmark(email, movie){
+function addNewBookmark(email, jwt, movie){
     return API.post('/bookmarks', {
         email,
-        movie}).then(result => result.data);
+        movie}, {
+            headers: {
+                'Authorization': `Bearer ${jwt}`
+            }
+        }).then(result => result.data);
 }
 
 function getSingleMovie(idmovie) {

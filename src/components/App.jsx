@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 import Login from './Login';
 import MovieList from './movies/MovieList';
@@ -8,7 +7,7 @@ import MyMovieList from './movies/MyMovieList';
 
 function App() {
   return (
-    <Router basename={import.meta.env.VITE_PUBLIC_URL}>
+    <BrowserRouter basename={import.meta.env.VITE_PUBLIC_URL}>
       <div>
         <Routes>
           <Route path="/" exact element={<Login/>} />
@@ -17,7 +16,7 @@ function App() {
           <Route path="/home/bookmarks" element={<MyMovieList/>} />
         </Routes>
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
