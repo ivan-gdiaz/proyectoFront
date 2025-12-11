@@ -18,7 +18,7 @@ function getAllMovies() {
 }
 
 function addNewBookmark(email, jwt, movie){
-    return API.post('/bookmarks', {
+    return API.post('/bookmarks/', {
         email,
         movie}, {
             headers: {
